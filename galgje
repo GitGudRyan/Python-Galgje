@@ -1,0 +1,52 @@
+import re
+import random
+
+counter = 0
+wordlist = ["informatica" , "informatiekunde", "spelletje", "aardigheidje", "scholier", "fotografie", "waardebepaling" , "specialiteit", "verzekering", "universiteit" , "heesterperk"]
+
+
+
+#computer kiest woord
+galgjewoord = random.choice(wordlist)
+lengtewoord = len(wordlist)
+temp="." * lengtewoord
+
+print("Welkom bij Galgje Xtreme! Dit is een spelletje waarbij het de bedoeling is om het door de computer gekozen woord te raden voordat je levens op zijn!")
+print("Typ een letter om te beginnen.....")
+
+print("het woord heeft", len(galgjewoord), "letters!")
+
+#Aantal beurten van speler
+beurten = 5
+x = galgjewoord
+streepjes = ["_"] * len(galgjewoord)
+
+while 1:
+  userinput = input("")
+  fout = False
+  # stuk voor stuk alle letters controleren
+  for idx, letter in enumerate(galgjewoord):   
+    if userinput == letter:
+      streepjes[idx] = letter
+      fout = True
+    elif userinput == galgjewoord:
+      fout = True
+
+  if fout == False:
+    print()
+    print("Fout!") #* 1
+    beurten = beurten - 1
+
+  print(' '.join(streepjes))
+
+  if userinput == galgjewoord:
+    print()
+    print("Je hebt het goed geraden!")
+    break
+  
+  if beurten == 0:
+    print()
+    print("Je hebt veloren")  
+    break
+  else:
+    print("Nog {} beurten.".format(beurten))
